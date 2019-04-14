@@ -354,3 +354,25 @@ class QtumTestnet(Qtum):
     PEERS = []
     PEER_DEFAULT_PORTS = {'t': '51001', 's': '51002'}
     RPC_PORT = 13889
+
+class VIPSTARCOIN(Qtum):
+    NAME = "VIPSTARCOIN"
+    SHORTNAME = "VIPS"
+    NET = "mainnet"
+    XPUB_VERBYTES = bytes.fromhex("0488b21e")
+    XPRV_VERBYTES = bytes.fromhex("0488ade4")
+    P2PKH_VERBYTE = bytes.fromhex("46")
+    P2SH_VERBYTES = [bytes.fromhex("32")]
+    WIF_BYTE = bytes.fromhex("80")
+    GENESIS_HASH = '0000d068e1d30f79fb64446137106be9c6ee69a6a722295c131506b1ee09b77c'
+    TX_COUNT = 803228
+    TX_COUNT_HEIGHT = 432514
+    TX_PER_BLOCK = 2
+    PEER_DEFAULT_PORTS = {'t': '50001', 's': '50002'}
+    PEERS = []
+    DAEMON = daemon.QtumDaemon
+    DESERIALIZER = lib_tx.DeserializerQtum
+    STATIC_BLOCK_HEADERS = False
+    BASIC_HEADER_SIZE = 180
+    RPC_PORT = 31916
+    CHUNK_SIZE = 1024
