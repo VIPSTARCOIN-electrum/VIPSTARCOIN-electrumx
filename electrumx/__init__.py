@@ -1,4 +1,4 @@
-version = 'Qtum ElectrumX 1.8.13'
+version = 'ElectrumX 1.12'
 version_short = version.split()[-1]
 
 from electrumx.server.controller import Controller

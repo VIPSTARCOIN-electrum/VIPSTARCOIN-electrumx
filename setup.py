@@ -1,12 +1,12 @@
 import setuptools
-version = '1.11.0'
+version = '1.12.0'
 
 setuptools.setup(
     name='electrumX',
     version=version,
     scripts=['electrumx_server', 'electrumx_rpc', 'electrumx_compact_history'],
     python_requires='>=3.6',
-    install_requires=['aiorpcX>=0.18.0,<0.19', 'attrs',
+    install_requires=['aiorpcX[ws]>=0.18.1,<0.19', 'attrs',
                       'plyvel', 'pylru', 'aiohttp>=3.3'],
     extras_require={
         'rocksdb': ['python-rocksdb>=0.6.9'],
@@ -18,6 +18,7 @@ setuptools.setup(
         'tribus-hash': ['tribus-hash>=1.0.2'],
         'xevan-hash': ['xeven-hash'],
         'x11-hash': ['x11-hash>=1.4'],
+        'zny-yespower-0-5': ['zny-yespower-0-5'],
     },
     packages=setuptools.find_packages(include=('electrumx*',)),
     description='ElectrumX Server',

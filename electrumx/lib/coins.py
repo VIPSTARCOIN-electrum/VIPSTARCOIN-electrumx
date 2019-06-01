@@ -272,27 +272,26 @@ class Coin(object):
         return m.digest()[:HASHY_LEN]
 
 
-class Qtum(Coin):
-    NAME = "Qtum"
-    SHORTNAME = "Qtum"
+class VIPSTARCOIN(Coin):
+    NAME = "VIPSTARCOIN"
+    SHORTNAME = "VIPS"
     NET = "mainnet"
     XPUB_VERBYTES = bytes.fromhex("0488b21e")
     XPRV_VERBYTES = bytes.fromhex("0488ade4")
-    P2PKH_VERBYTE = bytes.fromhex("3a")
+    P2PKH_VERBYTE = bytes.fromhex("46")
     P2SH_VERBYTES = [bytes.fromhex("32")]
     WIF_BYTE = bytes.fromhex("80")
-    GENESIS_HASH = '000075aef83cf2853580f8ae8ce6f8c3096cfa21d98334d6e3f95e5582ed986c'
-    TX_COUNT = 217380620
-    TX_COUNT_HEIGHT = 464000
-    TX_PER_BLOCK = 1800
+    GENESIS_HASH = '0000d068e1d30f79fb64446137106be9c6ee69a6a722295c131506b1ee09b77c'
+    TX_COUNT = 803228
+    TX_COUNT_HEIGHT = 432514
+    TX_PER_BLOCK = 2
     PEER_DEFAULT_PORTS = {'t': '50001', 's': '50002'}
     PEERS = []
     DAEMON = daemon.QtumDaemon
     DESERIALIZER = lib_tx.DeserializerQtum
     STATIC_BLOCK_HEADERS = False
     BASIC_HEADER_SIZE = 180
-    POW_BLOCK_COUNT = 5000
-    RPC_PORT = 3889
+    RPC_PORT = 31916
     CHUNK_SIZE = 1024
 
     @classmethod
@@ -343,37 +342,4 @@ class Qtum(Coin):
         return sha256(script).digest()[:HASHX_LEN]
 
 
-class QtumTestnet(Qtum):
-    NET = "testnet"
-    XPUB_VERBYTES = bytes.fromhex("043587CF")
-    XPRV_VERBYTES = bytes.fromhex("04358394")
-    GENESIS_HASH = '0000e803ee215c0684ca0d2f9220594d3f828617972aad66feb2ba51f5e14222'
-    REORG_LIMIT = 8000
-    TX_COUNT = 12242438
-    TX_COUNT_HEIGHT = 1035428
-    TX_PER_BLOCK = 21
-    PEERS = []
-    PEER_DEFAULT_PORTS = {'t': '51001', 's': '51002'}
-    RPC_PORT = 13889
 
-class VIPSTARCOIN(Qtum):
-    NAME = "VIPSTARCOIN"
-    SHORTNAME = "VIPS"
-    NET = "mainnet"
-    XPUB_VERBYTES = bytes.fromhex("0488b21e")
-    XPRV_VERBYTES = bytes.fromhex("0488ade4")
-    P2PKH_VERBYTE = bytes.fromhex("46")
-    P2SH_VERBYTES = [bytes.fromhex("32")]
-    WIF_BYTE = bytes.fromhex("80")
-    GENESIS_HASH = '0000d068e1d30f79fb64446137106be9c6ee69a6a722295c131506b1ee09b77c'
-    TX_COUNT = 803228
-    TX_COUNT_HEIGHT = 432514
-    TX_PER_BLOCK = 2
-    PEER_DEFAULT_PORTS = {'t': '50001', 's': '50002'}
-    PEERS = []
-    DAEMON = daemon.QtumDaemon
-    DESERIALIZER = lib_tx.DeserializerQtum
-    STATIC_BLOCK_HEADERS = False
-    BASIC_HEADER_SIZE = 180
-    RPC_PORT = 31916
-    CHUNK_SIZE = 1024
