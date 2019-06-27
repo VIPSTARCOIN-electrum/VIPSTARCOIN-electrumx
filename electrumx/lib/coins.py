@@ -293,8 +293,8 @@ class VIPSTARCOIN(Coin):
     BASIC_HEADER_SIZE = 180
     RPC_PORT = 31916
     CHUNK_SIZE = 1024
-    ESTIMATE_FEE = 0.01
-    RELAY_FEE = 0.004
+    ESTIMATE_FEE = 0.0001
+    RELAY_FEE = 0.0001
 
     @classmethod
     def block_header(cls, block, height):
