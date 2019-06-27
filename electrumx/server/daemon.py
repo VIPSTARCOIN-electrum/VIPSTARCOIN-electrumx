@@ -456,6 +456,15 @@ class DecredDaemon(Daemon):
 
 class QtumDaemon(Daemon):
 
+    async def estimatefee(self, block_count):
+        '''Return the fee estimate for the given parameters.'''
+        return self.coin.ESTIMATE_FEE
+
+    async def relayfee(self):
+        '''The minimum fee a low-priority tx must pay in order to be accepted
+        to the daemon's memory pool.'''
+        return self.coin.RELAY_FEE
+
     async def callcontract(self, address, data, sender):
         return await self._send_single('callcontract', (address, data, sender))
 
