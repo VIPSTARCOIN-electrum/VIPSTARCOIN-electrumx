@@ -295,7 +295,10 @@ class VIPSTARCOIN(Coin):
     CHUNK_SIZE = 1024
     ESTIMATE_FEE = 0.004
     RELAY_FEE = 0.004
-
+    PEER = [
+        'electrumx1.vipstarcoin.site s t',
+        'vips.blockbook.japanesecoin-pool.work s t',
+    ]
     @classmethod
     def block_header(cls, block, height):
         '''Returns the block header given a block and its height.'''
