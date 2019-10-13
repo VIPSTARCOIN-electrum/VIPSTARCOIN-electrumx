@@ -39,16 +39,18 @@ from functools import partial
 
 import electrumx.lib.util as util
 from electrumx.lib.hash import Base58, hash160, double_sha256, hash_to_hex_str
-from electrumx.lib.hash import HASHX_LEN, HASHY_LEN
-from electrumx.lib.script import ScriptPubKey, OpCodes
+from electrumx.lib.hash import HASHX_LEN, hex_str_to_hash
+from electrumx.lib.script import (_match_ops, Script, ScriptError,
+                                  ScriptPubKey, OpCodes)
 import electrumx.lib.tx as lib_tx
+import electrumx.lib.tx_dash as lib_tx_dash
+import electrumx.lib.tx_axe as lib_tx_axe
 import electrumx.server.block_processor as block_proc
 import electrumx.server.daemon as daemon
 from electrumx.server.session import ElectrumX
 
 
 Block = namedtuple("Block", "raw header transactions")
-OP_RETURN = OpCodes.OP_RETURN
 
 
 class CoinError(Exception):
@@ -140,7 +142,9 @@ class Coin(object):
         '''Returns a hashX from a script, or None if the script is provably
         unspendable so the output can be dropped.
         '''
-        if script and script[0] == OP_RETURN:
+        prefix = script[:2]
+        # Match a prefix of OP_RETURN or (OP_FALSE, OP_RETURN)
+        if prefix == b'\x00\x6a' or (prefix and prefix[0] == 0x6a):
             return None
         return sha256(script).digest()[:HASHX_LEN]
 
