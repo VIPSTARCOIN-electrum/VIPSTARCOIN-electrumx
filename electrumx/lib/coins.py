@@ -352,7 +352,7 @@ class VIPSTARCOIN(Coin):
 
 
 
-class VIPSTARCOINTestnet(VIPSTRCOIN):
+class VIPSTARCOINTestnet(VIPSTARCOIN):
     SHORTNAME = "XVIPS"
     NET = "testnet"
     XPUB_VERBYTES = bytes.fromhex("043587CF")
@@ -369,7 +369,7 @@ class VIPSTARCOINTestnet(VIPSTRCOIN):
     RPC_PORT = 32916
 
 
-class VIPSTARCOINRegtest(VIPSTRCOINTestnet):
+class VIPSTARCOINRegtest(VIPSTARCOINTestnet):
     NET = "regtest"
     GENESIS_HASH = '00054237d8dc843bd3f7ab66e2b608cfbfbbeed213e30eca9ca8c627dc8aace5'
     TX_COUNT = 1
