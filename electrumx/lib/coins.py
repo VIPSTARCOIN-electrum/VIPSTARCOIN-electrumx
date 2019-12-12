@@ -296,7 +296,7 @@ class VIPSTARCOIN(Coin):
     STATIC_BLOCK_HEADERS = False
     BASIC_HEADER_SIZE = 180
     RPC_PORT = 31916
-    CHUNK_SIZE = 1024
+    CHUNK_SIZE = 2016
     ESTIMATE_FEE = 0.004
     RELAY_FEE = 0.004
     PEER = [
@@ -352,3 +352,27 @@ class VIPSTARCOIN(Coin):
 
 
 
+class VIPSTARCOINTestnet(VIPSTRCOIN):
+    SHORTNAME = "XVIPS"
+    NET = "testnet"
+    XPUB_VERBYTES = bytes.fromhex("043587CF")
+    XPRV_VERBYTES = bytes.fromhex("04358394")
+    P2PKH_VERBYTE = bytes.fromhex("84")
+    P2SH_VERBYTES = [bytes.fromhex("6E")]
+    WIF_BYTE = bytes.fromhex("EF")
+    GENESIS_HASH = '0000d068e1d30f79fb64446137106be9c6ee69a6a722295c131506b1ee09b77c'
+    TX_COUNT = 1
+    TX_COUNT_HEIGHT = 1
+    TX_PER_BLOCK = 1
+    PEER_DEFAULT_PORTS = {'t': '51001', 's': '51002'}
+    PEERS = []
+    RPC_PORT = 32916
+
+
+class VIPSTARCOINRegtest(VIPSTRCOINTestnet):
+    NET = "regtest"
+    GENESIS_HASH = '00054237d8dc843bd3f7ab66e2b608cfbfbbeed213e30eca9ca8c627dc8aace5'
+    TX_COUNT = 1
+    TX_COUNT_HEIGHT = 1
+    PEERS = []
+    RPC_PORT = 33916
