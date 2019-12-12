@@ -301,7 +301,7 @@ class VIPSTARCOIN(Coin):
     RELAY_FEE = 0.004
     PEER = [
         'electrumx1.vipstarcoin.site s t',
-        'vips.blockbook.japanesecoin-pool.work s t',
+        'electrumx-vips.ilmango.work s t',
     ]
     @classmethod
     def block_header(cls, block, height):
