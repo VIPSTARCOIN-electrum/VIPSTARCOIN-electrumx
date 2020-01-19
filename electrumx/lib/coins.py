@@ -286,8 +286,8 @@ class VIPSTARCOIN(Coin):
     P2PKH_VERBYTE = bytes.fromhex("46")
     P2SH_VERBYTES = [bytes.fromhex("32")]
     WIF_BYTE = bytes.fromhex("80")
-    GENESIS_HASH = '0000d068e1d30f79fb64446137106be9',
-                   'c6ee69a6a722295c131506b1ee09b77c'
+    GENESIS_HASH = ('0000d068e1d30f79fb64446137106be9'
+                    'c6ee69a6a722295c131506b1ee09b77c')
     TX_COUNT = 803228
     TX_COUNT_HEIGHT = 432514
     TX_PER_BLOCK = 2
@@ -365,8 +365,8 @@ class VIPSTARCOINTestnet(VIPSTARCOIN):
     P2PKH_VERBYTE = bytes.fromhex("84")
     P2SH_VERBYTES = [bytes.fromhex("6E")]
     WIF_BYTE = bytes.fromhex("EF")
-    GENESIS_HASH = '0000d068e1d30f79fb64446137106be9',
-                   'c6ee69a6a722295c131506b1ee09b77c'
+    GENESIS_HASH = ('0000d068e1d30f79fb64446137106be9'
+                    'c6ee69a6a722295c131506b1ee09b77c')
     TX_COUNT = 1
     TX_COUNT_HEIGHT = 1
     TX_PER_BLOCK = 1
@@ -377,8 +377,8 @@ class VIPSTARCOINTestnet(VIPSTARCOIN):
 
 class VIPSTARCOINRegtest(VIPSTARCOINTestnet):
     NET = "regtest"
-    GENESIS_HASH = '00054237d8dc843bd3f7ab66e2b608cf',
-                   'bfbbeed213e30eca9ca8c627dc8aace5'
+    GENESIS_HASH = ('00054237d8dc843bd3f7ab66e2b608cf'
+                    'bfbbeed213e30eca9ca8c627dc8aace5')
     TX_COUNT = 1
     TX_COUNT_HEIGHT = 1
     PEERS = []
