@@ -16,12 +16,8 @@ import time
 from bisect import bisect_right
 from collections import namedtuple
 from glob import glob
-<<<<<<< HEAD
-from struct import pack, unpack
+from struct import Struct, pack, unpack
 from collections import defaultdict
-=======
-from struct import Struct
->>>>>>> upstream/master
 
 import attr
 from aiorpcx import run_in_thread, sleep
@@ -61,11 +57,7 @@ class DB(object):
     it was shutdown uncleanly.
     '''
 
-<<<<<<< HEAD
     DB_VERSIONS = [8]
-=======
-    DB_VERSIONS = [6, 7]
->>>>>>> upstream/master
 
     class DBError(Exception):
         '''Raised on general DB errors generally indicating corruption.'''
