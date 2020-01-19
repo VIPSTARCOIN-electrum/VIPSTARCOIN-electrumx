@@ -391,23 +391,3 @@ class QtumDaemon(Daemon):
 
     async def gettransactionreceipt(self, txid):
         return await self._send_single('gettransactionreceipt', (txid, ))
-
-    async def raw_blocks(self, hex_hashes):
-        '''Return the raw binary blocks with the given hex hashes.'''
-        params_iterable = ((h, False) for h in hex_hashes)
-        blocks = await self._send_vector('getblock', params_iterable)
-        # Convert hex string to bytes
-        return [hex_to_bytes(self.strip_mtp_data(block)) for block in blocks]
-
-    async def masternode_broadcast(self, params):
-        '''Broadcast a transaction to the network.'''
-        return await self._send_single('znodebroadcast', params)
-
-    async def masternode_list(self, params):
-        '''Return the masternode status.'''
-        return await self._send_single('znodelist', params)
-
-    async def protx(self, params):
-        '''Set of commands to execute ProTx related actions.'''
-        return await self._send_single('protx', params)
-
