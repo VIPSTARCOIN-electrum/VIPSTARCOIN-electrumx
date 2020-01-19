@@ -85,6 +85,7 @@ class Coin(object):
     DECODE_CHECK = Base58.decode_check
     GENESIS_HASH = ('000000000019d6689c085ae165831e93'
                     '4ff763ae46a2a6c172b3f1b60a8ce26f')
+    GENESIS_ACTIVATION = 100_000_000
     # Peer discovery
     PEER_DEFAULT_PORTS = {'t': '50001', 's': '50002'}
     PEERS = []
@@ -124,6 +125,12 @@ class Coin(object):
         return url + '/'
 
     @classmethod
+    def max_fetch_blocks(cls, height):
+        if height < 130000:
+            return 1000
+        return 100
+
+    @classmethod
     def genesis_block(cls, block):
         '''Check the Genesis block is the right one for this coin.
 
@@ -139,13 +146,7 @@ class Coin(object):
 
     @classmethod
     def hashX_from_script(cls, script):
-        '''Returns a hashX from a script, or None if the script is provably
-        unspendable so the output can be dropped.
-        '''
-        prefix = script[:2]
-        # Match a prefix of OP_RETURN or (OP_FALSE, OP_RETURN)
-        if prefix == b'\x00\x6a' or (prefix and prefix[0] == 0x6a):
-            return None
+        '''Returns a hashX from a script.'''
         return sha256(script).digest()[:HASHX_LEN]
 
     @staticmethod
@@ -285,7 +286,8 @@ class VIPSTARCOIN(Coin):
     P2PKH_VERBYTE = bytes.fromhex("46")
     P2SH_VERBYTES = [bytes.fromhex("32")]
     WIF_BYTE = bytes.fromhex("80")
-    GENESIS_HASH = '0000d068e1d30f79fb64446137106be9c6ee69a6a722295c131506b1ee09b77c'
+    GENESIS_HASH = '0000d068e1d30f79fb64446137106be9'
+                   'c6ee69a6a722295c131506b1ee09b77c'
     TX_COUNT = 803228
     TX_COUNT_HEIGHT = 432514
     TX_PER_BLOCK = 2
@@ -302,7 +304,10 @@ class VIPSTARCOIN(Coin):
     PEER = [
         'electrumx1.vipstarcoin.site s t',
         'electrumx-vips.ilmango.work s t',
+        'vips.electrumx.japanesecoin-pool.work s t',
+        'vips.blockbook.japanesecoin-pool.work s t',
     ]
+
     @classmethod
     def block_header(cls, block, height):
         '''Returns the block header given a block and its height.'''
@@ -360,7 +365,8 @@ class VIPSTARCOINTestnet(VIPSTARCOIN):
     P2PKH_VERBYTE = bytes.fromhex("84")
     P2SH_VERBYTES = [bytes.fromhex("6E")]
     WIF_BYTE = bytes.fromhex("EF")
-    GENESIS_HASH = '0000d068e1d30f79fb64446137106be9c6ee69a6a722295c131506b1ee09b77c'
+    GENESIS_HASH = '0000d068e1d30f79fb64446137106be9'
+                   'c6ee69a6a722295c131506b1ee09b77c'
     TX_COUNT = 1
     TX_COUNT_HEIGHT = 1
     TX_PER_BLOCK = 1
